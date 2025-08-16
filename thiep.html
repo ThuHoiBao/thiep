@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎂 Sinh Nhật – Lê Đăng Thiện 🎉</title>
+  <style>
+    :root{
+      --bg1:#ff9a9e; --bg2:#fad0c4; --bg3:#fbc2eb; --bg4:#a1c4fd; --ink:#0f172a; --card:#ffffff;
+      --accent:#ff5d8f; --accent2:#7c3aed; --good:#00c2ff; --yay:#22c55e; --gold:#ffd166;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--ink);
+      background: linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3),var(--bg4));
+      background-size: 300% 300%;
+      animation: bgmove 16s ease infinite;
+      overflow-x:hidden;
+    }
+    @keyframes bgmove {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    .wrap{max-width:1024px;margin:0 auto;padding:20px}
+
+    .card{
+      position:relative;
+      background:linear-gradient(180deg,#fff, #fff9);
+      border-radius:28px; box-shadow:0 24px 80px rgba(0,0,0,.18);
+      padding:24px; overflow:hidden;
+    }
+
+    .ribbon{position:absolute; inset:auto -50px -40px auto; transform:rotate(-12deg); opacity:.08; font-size:200px}
+
+    .title{ text-align:center; margin:0; line-height:1; font-weight:900; font-size:clamp(32px,6vw,56px);
+      background:linear-gradient(90deg,#ff3c7f,#ffcc00,#00d2ff,#7c3aed,#ff3c7f);
+      -webkit-background-clip:text; background-clip:text; color:transparent; background-size:200% 100%; animation: shine 6s linear infinite;
+      text-shadow:0 6px 24px rgba(0,0,0,.12);}
+    @keyframes shine{to{background-position:200% 0}}
+
+    .subtitle{ text-align:center; margin:10px 0 16px; opacity:.85 }
+
+    .hero{ display:grid; grid-template-columns: 1fr auto 1fr; gap:20px; align-items:center }
+    @media (max-width:720px){ .hero{ grid-template-columns:1fr } }
+
+    /* Photo */
+    .photo-wrap{ position:relative; place-self:center }
+    .ring{ position:absolute; inset:-14px; border-radius:999px; filter:hue-rotate(0deg);
+      animation: ringGlow 8s linear infinite; pointer-events:none }
+    .ring::before{ content:""; position:absolute; inset:0; border-radius:inherit;
+      background: conic-gradient(from 0deg, #ff0080, #ffde59, #00e1ff, #8a5cf6, #ff0080);
+      filter: blur(8px); opacity:.9 }
+    @keyframes ringGlow{ 0%{ transform:rotate(0)} 100%{ transform:rotate(360deg) } }
+
+    .photo{ width:220px; height:220px; border-radius:50%; object-fit:cover; 
+      border:8px solid #fff; box-shadow:0 16px 40px rgba(0,0,0,.25);
+      animation: float 5s ease-in-out infinite alternate }
+    @keyframes float{ from{ transform:translateY(0) rotate(0) } to{ transform:translateY(-14px) rotate(2deg) } }
+
+    /* Buttons */
+    .actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin:14px 0 2px }
+    .btn{ border:0; padding:12px 16px; border-radius:999px; font-weight:800; cursor:pointer;
+      background:linear-gradient(90deg,var(--accent),var(--accent2)); color:white; box-shadow:0 14px 28px rgba(124,58,237,.35);
+      transform:translateY(0); transition:.2s; letter-spacing:.3px }
+    .btn:active{ transform:translateY(2px) scale(.99) }
+    .btn.secondary{background:linear-gradient(90deg,var(--good),var(--yay)); box-shadow:0 14px 28px rgba(34,197,94,.35)}
+    .btn.ghost{background:#fff; color:#222; border:2px dashed #2223}
+
+    /* Cake */
+    .cake-area{ display:grid; place-items:center; padding:6px 0 0 }
+    svg{max-width:420px; width:100%; height:auto}
+    .glow{ filter: drop-shadow(0 0 12px rgba(255,215,0,.8)) drop-shadow(0 0 22px rgba(255,167,0,.7)); }
+
+    /* Typewriter */
+    .type{ min-height:54px; text-align:center; font-weight:800; 
+      font-size:clamp(18px,2.8vw,22px); margin:10px auto 0; opacity:.95 }
+
+    /* Ticker wishes at bottom */
+    .ticker{ position:fixed; bottom:12px; left:12px; right:12px; z-index:6; }
+    .lane{ display:flex; gap:28px; padding:8px 14px; white-space:nowrap; border-radius:14px; background:#ffffffba; backdrop-filter:blur(6px); box-shadow:0 6px 18px rgba(0,0,0,.12); animation: ticker 22s linear infinite }
+    @keyframes ticker{ from{ transform:translateX(0)} to{ transform:translateX(-50%)} }
+    .chip{ padding:8px 12px; border-radius:999px; background:#111827; color:#fff; font-weight:800; font-size:14px }
+
+    /* Balloons */
+    .balloon{ position:fixed; bottom:-120px; width:62px; aspect-ratio:1/1.2; border-radius:50% 50% 47% 47%;
+      background:radial-gradient(circle at 30% 25%,#fff8,transparent 40%), var(--bcol,#ff6b6b);
+      box-shadow: inset -10px -16px 24px #0001; animation: floatUp var(--dur,12s) linear infinite; z-index:0;
+    }
+    .balloon::after{ content:""; position:absolute; bottom:-22px; left:50%; width:2px; height:26px; background:#0002 }
+    @keyframes floatUp{ from{ transform: translateY(0) translateX(0) rotate(2deg)} to{ transform: translateY(-120vh) translateX(var(--drift,40px)) rotate(-4deg)} }
+
+    /* FX canvas */
+    #fx{ position:fixed; inset:0; pointer-events:none; z-index:3 }
+
+    /* Floating emojis */
+    .emoji{ position:fixed; font-size:clamp(20px,3.5vw,36px); animation: drift 9s linear infinite; opacity:.85; z-index:2}
+    @keyframes drift{ from{ transform:translateY(110vh) translateX(0) rotate(0)} to{ transform:translateY(-20vh) translateX(40px) rotate(360deg)} }
+
+    .footer-note{ text-align:center; font-size:13px; opacity:.7; padding:8px 0 0 }
+  </style>
+</head>
+<body>
+  <!-- Fireworks layer -->
+  <canvas id="fx"></canvas>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="ribbon">🎉</div>
+      <h1 class="title">🎂 Chúc mừng sinh nhật <span id="who">Lê Đăng Thiện Luuuuuu</span>! 🎉</h1>
+      <p class="subtitle">Bấm nút là party nổ tung fen ơi! 💥</p>
+
+      <div class="hero">
+        <div class="spacer"></div>
+        <div class="photo-wrap">
+          <div class="ring" aria-hidden="true"></div>
+          <img class="photo" src="https://raw.githubusercontent.com/ThuHoiBao/image/main/z6912848691032_64f10e2e1a99692c038d324a68ea4b6c.jpg
+" alt="Ảnh Lê Đăng Thiện">
+        </div>
+        <div class="spacer"></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="party">Bắt đầu Bùng Nổ 🎊</button>
+        <button class="btn secondary" id="blow">Thổi nến 🕯️</button>
+        <button class="btn ghost" id="joke">Kể 1 câu bông đùa 😆</button>
+        <button class="btn ghost" id="sparkle">Thêm lấp lánh ✨</button>
+      </div>
+
+      <div class="cake-area" aria-hidden="false">
+        <!-- Cute cake SVG with candles -->
+        <svg viewBox="0 0 500 320" role="img" aria-label="Bánh kem sinh nhật">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0%" stop-color="#ffe066"/>
+              <stop offset="100%" stop-color="#ffa94d"/>
+            </linearGradient>
+            <linearGradient id="cream" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#fff5f5"/>
+              <stop offset="100%" stop-color="#ffdbe6"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="250" cy="300" rx="180" ry="16" fill="#0002"/>
+          <ellipse cx="250" cy="294" rx="200" ry="18" fill="#fff"/>
+          <rect x="110" y="150" width="280" height="120" rx="22" fill="url(#cream)" stroke="#f8c8d8"/>
+          <path d="M120 170 q10 30 30 0 t40 0 t40 0 q10 30 30 0 t40 0 t40 0 q10 30 30 0" fill="#ffc9de"/>
+          <g id="candles">
+            <rect x="170" y="110" width="16" height="50" rx="6" fill="#74c0fc"/>
+            <rect x="240" y="105" width="16" height="55" rx="6" fill="#ffd43b"/>
+            <rect x="310" y="112" width="16" height="48" rx="6" fill="#b197fc"/>
+          </g>
+          <g id="flames" class="glow">
+            <path d="M178 98 q8 -18 16 0 q-8 14 -16 0" fill="url(#g1)"/>
+            <path d="M248 93 q8 -18 16 0 q-8 14 -16 0" fill="url(#g1)"/>
+            <path d="M318 100 q8 -18 16 0 q-8 14 -16 0" fill="url(#g1)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="type" id="type"></div>
+
+      <p class="footer-note">Tip: Bấm <b>Bắt đầu Bùng Nổ</b>. Chúc một ngày sinh nhật rực rỡ, Lê Đăng Thiện! ✨</p>
+    </div>
+  </div>
+
+  <!-- Bottom ticker wishes -->
+  <div class="ticker" aria-hidden="true">
+    <div class="lane" id="lane">
+      <span class="chip">🎉 Chúc Thiện cười nhiều như được lì xì quanh năm</span>
+      <span class="chip">💪 Sức khỏe dồi dào – deadline tự chạy</span>
+      <span class="chip">💼 Công việc thăng tiến – ví nặng tay</span>
+      <span class="chip">💘 Tình duyên như pháo hoa: bùng nổ sắc màu</span>
+      <span class="chip">🍰 Ăn bánh không tăng cân, tiền tăng không giảm</span>
+      <span class="chip">✈️ Du lịch tới tấp, check-in mỏi tay</span>
+      <span class="chip">🎁 Quà nhiều đến mức… cần thêm tủ</span>
+      <span class="chip">🎉 Chúc Thiện cười nhiều như được lì xì quanh năm</span>
+      <span class="chip">💪 Sức khỏe dồi dào – deadline tự chạy</span>
+      <span class="chip">💼 Công việc thăng tiến – ví nặng tay</span>
+      <span class="chip">💘 Tình duyên như pháo hoa: bùng nổ sắc màu</span>
+      <span class="chip">🍰 Ăn bánh không tăng cân, tiền tăng không giảm</span>
+      <span class="chip">✈️ Du lịch tới tấp, check-in mỏi tay</span>
+      <span class="chip">🎁 Quà nhiều đến mức… cần thêm tủ</span>
+    </div>
+  </div>
+
+<script>
+  // -------- Typewriter wishes --------
+  const typer = (el, text, speed=24) => new Promise(res=>{
+    el.textContent = ""; let i=0; const t = setInterval(()=>{ el.textContent += text[i++]||""; if(i>text.length){ clearInterval(t); res(); }}, speed);
+  });
+  const typeEl = document.getElementById('type');
+  const lines = [
+    "Sinh nhật vui vẻ, Thiện ơi! Ước gì cũng được – trừ ước trúng số, vì tớ vừa ước rồi 😆",
+    "Tuổi mới: rực rỡ hơn pháo hoa, nhẹ nhàng hơn deadline, nặng ví hơn lương 💸",
+    "Bánh có thể ngọt, nhưng Thiện mới là ‘đường’ làm ngày nay tan chảy 🧁",
+    "Cười nhiều cho trẻ lâu – còn không thì filter lo! 📸"
+  ];
+  async function runType(){
+    while(true){ for(const l of lines){ await typer(typeEl,l,22); await new Promise(r=>setTimeout(r,1000)); } }
+  }
+  runType();
+
+  // -------- Balloons & Emojis --------
+  const colors = ['#ff6b6b','#ffd166','#74c0fc','#b197fc','#51cf66','#ffa8a8'];
+  const emojis = ['🎈','🎉','🎂','🧁','🎁','🥳','✨'];
+
+  function spawnBalloons(n=16){
+    for(let i=0;i<n;i++){
+      const b = document.createElement('div'); b.className='balloon';
+      b.style.left = Math.random()*100+'vw';
+      b.style.setProperty('--drift', (Math.random()*120-60)+'px');
+      b.style.setProperty('--dur', (10+Math.random()*10)+'s');
+      b.style.setProperty('--bcol', colors[i%colors.length]);
+      document.body.appendChild(b);
+      setTimeout(()=>b.remove(), 20000);
+    }
+  }
+  function spawnEmojis(n=12){
+    for(let i=0;i<n;i++){
+      const e=document.createElement('div'); e.className='emoji'; e.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      e.style.left=Math.random()*100+'vw'; e.style.animationDuration=(7+Math.random()*7)+'s';
+      document.body.appendChild(e); setTimeout(()=>e.remove(), 12000);
+    }
+  }
+
+  // -------- Confetti (DOM) --------
+  const confetti = document.createElement('div'); confetti.style.position='fixed'; confetti.style.inset='0'; confetti.style.pointerEvents='none'; confetti.style.zIndex='4'; document.body.appendChild(confetti);
+  function burstConfetti(times=1){
+    for(let k=0;k<times;k++){
+      setTimeout(()=>{
+        for(let i=0;i<120;i++){
+          const p=document.createElement('i'); p.style.position='absolute'; p.style.width=p.style.height=(6+Math.random()*6)+'px';
+          p.style.left = (50 + (Math.random()*40-20))+'%'; p.style.top = '40%';
+          p.style.background = colors[Math.floor(Math.random()*colors.length)]; p.style.opacity=.95;
+          p.animate([
+            { transform:`translate(-50%,-50%) rotate(0)` },
+            { transform:`translate(${(Math.random()*400-200)}px, ${(Math.random()*600)}px) rotate(${Math.random()*720}deg)` }
+          ], { duration: 1500+Math.random()*800, easing:'cubic-bezier(.12,.62,.25,1)' });
+          confetti.appendChild(p); setTimeout(()=>p.remove(), 2200);
+        }
+      }, k*300);
+    }
+  }
+
+  // -------- Fireworks (Canvas) --------
+  const canvas = document.getElementById('fx'); const ctx = canvas.getContext('2d');
+  let W,H; function resize(){ W=canvas.width=innerWidth; H=canvas.height=innerHeight } resize(); addEventListener('resize',resize);
+  const sparks=[];
+  function firework(){
+    const x=W*Math.random(), y=H*(.25+.35*Math.random()); const n=80; const hue=Math.floor(Math.random()*360);
+    for(let i=0;i<n;i++){
+      const a= (Math.PI*2*i)/n; const v=2+Math.random()*3;
+      sparks.push({x,y, vx:Math.cos(a)*v, vy:Math.sin(a)*v, life:60+Math.random()*20, age:0, hue});
+    }
+  }
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=sparks.length-1;i>=0;i--){ const s=sparks[i]; s.age++; s.x+=s.vx; s.y+=s.vy; s.vy+=0.02;
+      const alpha = Math.max(0, 1 - s.age/s.life); if(alpha<=0){ sparks.splice(i,1); continue; }
+      ctx.beginPath(); ctx.arc(s.x,s.y,2,0,6.283); ctx.fillStyle=`hsla(${s.hue},100%,60%,${alpha})`; ctx.fill();
+    }
+    requestAnimationFrame(loop);
+  } loop();
+
+  // -------- Buttons --------
+  document.getElementById('party').addEventListener('click',()=>{
+    spawnBalloons(20); spawnEmojis(16); burstConfetti(3);
+    const seq = setInterval(firework, 600); setTimeout(()=>clearInterval(seq), 8000);
+  });
+
+  document.getElementById('blow').addEventListener('click',()=>{
+    const flames = document.querySelector('#flames'); flames.style.display='none';
+    burstConfetti(1);
+  });
+
+  const jokes=[
+    'Thiện ơi, nếu bánh là deadline thì hôm nay cho ăn hết! 🍰',
+    'Tuổi mới: đi làm nhàn – lương ngàn đô (ước vậy cho máu) 💸',
+    'Uống nước nhớ nguồn, sinh nhật nhớ phong bì! 😜',
+    'Ăn bánh không mập, tiền vào không thoát – chúc mừng! 🥳'
+  ];
+  document.getElementById('joke').addEventListener('click',()=>{
+    alert(jokes[Math.floor(Math.random()*jokes.length)]);
+  });
+
+  document.getElementById('sparkle').addEventListener('click',()=>{
+    spawnEmojis(20); burstConfetti(2); firework();
+  });
+
+  // Auto gentle vibes on load
+  setTimeout(()=>{ spawnBalloons(10); spawnEmojis(8); }, 600);
+</script>
+</body>
+</html>
